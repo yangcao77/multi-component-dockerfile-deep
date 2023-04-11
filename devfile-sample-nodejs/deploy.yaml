@@ -1,23 +1,23 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: my-go
+  name: my-nodejs
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: go-app
+      app: nodejs-app
   template:
     metadata:
       labels:
-        app: go-app
+        app: nodejs-app
     spec:
       containers:
-        - name: my-go
-          image: go-image:latest
+        - name: my-nodejs
+          image: nodejs-image:latest
           ports:
             - name: http
-              containerPort: 8081
+              containerPort: 3001
               protocol: TCP
           resources:
             limits:
@@ -27,12 +27,12 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: my-go-svc
+  name: my-nodejs-svc
 spec:
 ports:
-  - name: http-8081
-    port: 8081
+  - name: http-3001
+    port: 3001
     protocol: TCP
-    targetPort: 8081
+    targetPort: 3001
 selector:
-  app: go-app
+  app: nodejs-app

@@ -1,1 +1,0 @@
-# devfile-sample-go-basic
